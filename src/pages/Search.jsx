@@ -8,8 +8,8 @@ export default function Search() {
   const [sidebardata, setSidebardata] = useState({
     searchTerm: '',
     type: 'all',
-    parking: false,
-    furnished: false,
+    crashed: false,
+    electric: false,
     offer: false,
     sort: 'created_at',
     order: 'desc',
@@ -23,8 +23,8 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
     const typeFromUrl = urlParams.get('type');
-    const parkingFromUrl = urlParams.get('parking');
-    const furnishedFromUrl = urlParams.get('furnished');
+    const crashedFromUrl = urlParams.get('crashed');
+    const electricFromUrl = urlParams.get('electric');
     const offerFromUrl = urlParams.get('offer');
     const sortFromUrl = urlParams.get('sort');
     const orderFromUrl = urlParams.get('order');
@@ -32,8 +32,8 @@ export default function Search() {
     if (
       searchTermFromUrl ||
       typeFromUrl ||
-      parkingFromUrl ||
-      furnishedFromUrl ||
+      crashedFromUrl ||
+      electricFromUrl ||
       offerFromUrl ||
       sortFromUrl ||
       orderFromUrl
@@ -41,8 +41,8 @@ export default function Search() {
       setSidebardata({
         searchTerm: searchTermFromUrl || '',
         type: typeFromUrl || 'all',
-        parking: parkingFromUrl === 'true' ? true : false,
-        furnished: furnishedFromUrl === 'true' ? true : false,
+        crashed: crashedFromUrl === 'true' ? true : false,
+        electric: electricFromUrl === 'true' ? true : false,
         offer: offerFromUrl === 'true' ? true : false,
         sort: sortFromUrl || 'created_at',
         order: orderFromUrl || 'desc',
@@ -81,8 +81,8 @@ export default function Search() {
     }
 
     if (
-      e.target.id === 'parking' ||
-      e.target.id === 'furnished' ||
+      e.target.id === 'crashed' ||
+      e.target.id === 'electric' ||
       e.target.id === 'offer'
     ) {
       setSidebardata({
@@ -106,8 +106,8 @@ export default function Search() {
     const urlParams = new URLSearchParams();
     urlParams.set('searchTerm', sidebardata.searchTerm);
     urlParams.set('type', sidebardata.type);
-    urlParams.set('parking', sidebardata.parking);
-    urlParams.set('furnished', sidebardata.furnished);
+    urlParams.set('crashed', sidebardata.crashed);
+    urlParams.set('electric', sidebardata.electric);
     urlParams.set('offer', sidebardata.offer);
     urlParams.set('sort', sidebardata.sort);
     urlParams.set('order', sidebardata.order);
@@ -193,20 +193,20 @@ export default function Search() {
             <div className='flex gap-2'>
               <input
                 type='checkbox'
-                id='parking'
+                id='crashed'
                 className='w-5'
                 onChange={handleChange}
-                checked={sidebardata.parking}
+                checked={sidebardata.crashed}
               />
               <span>crashed before</span>
             </div>
             <div className='flex gap-2'>
               <input
                 type='checkbox'
-                id='furnished'
+                id='electric'
                 className='w-5'
                 onChange={handleChange}
-                checked={sidebardata.furnished}
+                checked={sidebardata.electric}
               />
               <span>Electric</span>
             </div>
